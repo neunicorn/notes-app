@@ -9,6 +9,7 @@ class App extends React.Component {
     this.state = {
       notes: getInitialData(),
       searchResult: [],
+      search: "",
     };
     this.onDeleteEventHandler = this.onDeleteEventHandler.bind(this);
     this.onArchiveEventHandler = this.onArchiveEventHandler.bind(this);
@@ -36,10 +37,10 @@ class App extends React.Component {
         notes: [
           ...prevSate.notes,
           {
-            id: prevSate.notes.length + 1,
+            id: +new Date(),
             title,
             body,
-            createdAt: showFormattedDate(new Date()),
+            createdAt: +new Date(),
             archived: false,
           },
         ],
@@ -50,7 +51,7 @@ class App extends React.Component {
     const newNotes = this.state.notes.filter((note) => {
       return note.title.toLowerCase().includes(search.toLowerCase());
     });
-    this.setState({ searchResult: newNotes });
+    this.setState({ searchResult: newNotes, search });
   }
 
   render() {
@@ -60,7 +61,7 @@ class App extends React.Component {
         {console.log(this.state.notes)}
         <Body
           notes={
-            this.state.searchResult.length > 0
+            this.state.search.length > 0
               ? this.state.searchResult
               : this.state.notes
           }

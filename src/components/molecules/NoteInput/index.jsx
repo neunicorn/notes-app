@@ -16,13 +16,16 @@ class NoteInput extends React.Component {
     this.onChangeTitleEventHandler = this.onChangeTitleEventHandler.bind(this);
   }
 
-  onChangeTitleEventHandler(event) {
-    this.setState(() => {
-      return {
-        title: event.target.value,
-        charLimit: 50 - event.target.value.length,
-      };
-    });
+  onChangeTitleEventHandler(e) {
+    const inputValue = e.target.value;
+    if (inputValue.length <= 50) {
+      this.setState(() => {
+        return {
+          title: inputValue,
+          charLimit: 50 - e.target.value.length,
+        };
+      });
+    }
   }
 
   onChangeBodyEventHandler(event) {
