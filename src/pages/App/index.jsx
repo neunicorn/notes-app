@@ -38,7 +38,7 @@ class App extends React.Component {
         id: this.state.notes.length + 1,
         title,
         body,
-        date: +new Date(),
+        createdAt: +new Date(),
         archived: false,
       },
     ];

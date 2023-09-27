@@ -9,27 +9,37 @@ const NoteList = ({
 }) => {
   return (
     <div className="notes-list">
-      {notes.map((note) => {
-        {
-          console.log(note);
+      <NoteItem
+        key="7"
+        id="7"
+        title="title"
+        createdAt="2020-12-12"
+        body="body"
+        deleteEventHandler={() => deleteEventHandler(7)}
+        archiveEventHandler={() => archiveEventHandler(7)}
+        status={true}
+      />
+      {/* {notes.map((note))=>{
+        <NoteItem
+        key={note.id}
+        id={note.id}
+        
+      }} */}
+      {/* {notes.map((note) => {
+        if (note.archived === status) {
+          return (
+            <NoteItem
+              key={note.id}
+              title={note.title}
+              createdAt={note.createdAt}
+              body={note.body}
+              deleteEventHandler={() => deleteEventHandler(note.id)}
+              archiveEventHandler={() => archiveEventHandler(note.id)}
+              status={note.archived}
+            />
+          );
         }
-        if (note.archived === false) {
-          {
-            console.log("masuk");
-          }
-          <NoteItem
-            key={note.id}
-            deleteEventHandler={deleteEventHandler}
-            archiveEventHandler={archiveEventHandler}
-            title={note.title}
-            date={note.date}
-            body={note.body}
-            status="false"
-          />;
-          {
-          }
-        }
-      })}
+      })} */}
     </div>
   );
 };
