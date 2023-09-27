@@ -2,6 +2,8 @@ import React from "react";
 import { NoteInput, NoteList } from "../..";
 
 const Body = ({ notes, addNotes, deleteEventHandler, archiveEventHandler }) => {
+  console.log("=======================================");
+  console.log(notes);
   const isNotes = notes.some((note) => {
     return note.archived === false;
   });
@@ -22,7 +24,7 @@ const Body = ({ notes, addNotes, deleteEventHandler, archiveEventHandler }) => {
           archiveEventHandler={archiveEventHandler}
         />
       ) : (
-        <p className="note-list__empty-message">Tidak ada catatan</p>
+        <p className="notes-list__empty-message">Tidak ada catatan</p>
       )}
       <h2>Arsip</h2>
       {isArchived === true ? (
@@ -33,7 +35,7 @@ const Body = ({ notes, addNotes, deleteEventHandler, archiveEventHandler }) => {
           archiveEventHandler={archiveEventHandler}
         />
       ) : (
-        <p className="note-list__empty-message">Tidak ada catatan ???????</p>
+        <p className="notes-list__empty-message">Tidak ada catatan</p>
       )}
     </div>
   );

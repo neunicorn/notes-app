@@ -11,9 +11,6 @@ const NoteItem = ({
   onArchive,
   status,
 }) => {
-  {
-    console.log(title, createdAt, body);
-  }
   return (
     <div className="note-item">
       <div className="note-item__content">

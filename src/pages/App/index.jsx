@@ -8,6 +8,7 @@ class App extends React.Component {
 
     this.state = {
       notes: getInitialData(),
+      searchResult: [],
     };
     this.onDeleteEventHandler = this.onDeleteEventHandler.bind(this);
     this.onArchiveEventHandler = this.onArchiveEventHandler.bind(this);
@@ -30,37 +31,39 @@ class App extends React.Component {
     this.setState({ notes: newNotes });
   }
   addNotes({ title, body }) {
-    const newNotes = [
-      ...this.state.notes,
-      {
-        id: this.state.notes.length + 1,
-        title,
-        body,
-        createdAt: +new Date(),
-        archived: false,
-      },
-    ];
-    this.setState({ notes: newNotes });
+    this.setState((prevSate) => {
+      return {
+        notes: [
+          ...prevSate.notes,
+          {
+            id: prevSate.notes.length + 1,
+            title,
+            body,
+            createdAt: showFormattedDate(new Date()),
+            archived: false,
+          },
+        ],
+      };
+    });
   }
   filterNotes(search) {
-    for (const note of this.state.notes) {
-      if (note.title.toLowerCase().includes(search.toLowerCase())) {
-        return this.setState(() => {
-          return {
-            notes: note,
-          };
-        });
-      }
-    }
-    // this.setState({ notes: newNotes });
+    const newNotes = this.state.notes.filter((note) => {
+      return note.title.toLowerCase().includes(search.toLowerCase());
+    });
+    this.setState({ searchResult: newNotes });
   }
+
   render() {
     return (
       <>
         <Header title="Notes App" filterNotes={this.filterNotes} />
         {console.log(this.state.notes)}
         <Body
-          notes={this.state.notes}
+          notes={
+            this.state.searchResult.length > 0
+              ? this.state.searchResult
+              : this.state.notes
+          }
           addNotes={this.addNotes}
           deleteEventHandler={this.onDeleteEventHandler}
           archiveEventHandler={this.onArchiveEventHandler}

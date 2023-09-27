@@ -21,8 +21,7 @@ class Header extends React.Component {
     });
   }
 
-  filterNotes(event) {
-    event.preventDefault();
+  filterNotes() {
     this.props.filterNotes(this.state.search);
   }
 
@@ -35,8 +34,8 @@ class Header extends React.Component {
             placeholder="Search..."
             type="text"
             onChange={this.onSearchEventHandler}
-            onKeyUp={this.filterNotes}
-            onKeyDown={this.filterNotes}
+            onKeyUp={() => this.filterNotes()}
+            onKeyDown={() => this.filterNotes()}
             value={this.state.search}
           />
         </div>
