@@ -17,7 +17,7 @@ const Body = ({ notes, addNotes, deleteEventHandler, archiveEventHandler }) => {
       {isNotes === true ? (
         <NoteList
           notes={notes}
-          status="false"
+          status={false}
           deleteEventHandler={deleteEventHandler}
           archiveEventHandler={archiveEventHandler}
         />
@@ -28,7 +28,7 @@ const Body = ({ notes, addNotes, deleteEventHandler, archiveEventHandler }) => {
       {isArchived === true ? (
         <NoteList
           notes={notes}
-          status="true"
+          status={true}
           deleteEventHandler={deleteEventHandler}
           archiveEventHandler={archiveEventHandler}
         />

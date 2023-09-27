@@ -21,15 +21,13 @@ class App extends React.Component {
   }
 
   onArchiveEventHandler(id) {
-    this.setState((state) => {
-      const newNotes = state.notes.map((note) => {
-        if (note.id === id) {
-          note.archived = !note.archived;
-          return note;
-        }
-      });
-      return { notes: newNotes };
+    const newNotes = this.state.notes.map((note) => {
+      if (note.id === id) {
+        note.archived = !note.archived;
+      }
+      return note;
     });
+    this.setState({ notes: newNotes });
   }
   addNotes({ title, body }) {
     const newNotes = [

@@ -7,8 +7,8 @@ const NoteItem = ({
   createdAt,
   body,
   id,
-  deleteEventHandler,
-  archiveEventHandler,
+  onDelete,
+  onArchive,
   status,
 }) => {
   {
@@ -25,19 +25,19 @@ const NoteItem = ({
         <Button
           title="Delete"
           className="note-item__delete-button"
-          onClick={() => deleteEventHandler(id)}
+          onClick={() => onDelete(id)}
         />
         {status === true ? (
           <Button
             title="Unarchive"
             className="note-item__archive-button"
-            onClick={() => archiveEventHandler(id)}
+            onClick={() => onArchive(id)}
           />
         ) : (
           <Button
             title="Archive"
             className="note-item__archive-button"
-            onClick={() => archiveEventHandler(id)}
+            onClick={() => onArchive(id)}
           />
         )}
       </div>
